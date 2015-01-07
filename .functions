@@ -1,0 +1,12 @@
+# .functions
+
+# use @google to google stuff up
+function @google {
+open "https://google.com/search?q=$*"
+}
+
+# needed for the git bash prompt
+function parse_git_branch {
+git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
+}
+

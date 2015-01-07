@@ -1,0 +1,37 @@
+[user]
+	name = 
+	email = 
+[core]
+	autocrlf = input
+	excludesfile = ~/.gitignore
+	whitespace = space-before-tab,-indent-with-non-tab,trailing-space
+	# Make `git rebase` safer on OS X
+	trustctime = false
+[branch]
+	autosetupmerge = true
+[color]
+	ui = true
+[pack]
+	threads = 0
+[push]
+	default = matching
+[alias]
+	# nice git pull
+	up = "!git remote update -p; git merge --ff-only @{u}"
+	# show a nice log commit tree
+	l = log --pretty=oneline -n 20 --graph --abbrev-commit
+	# current working tree status using the short format
+	s = status -s
+	# diff between the latest commit and the current state
+	d = !"git diff-index --quiet HEAD -- || clear; git --no-pager diff --patch-with-stat"
+	# delete merged branches
+	dm = "!git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d"
+	# show top commiters
+	contributors = shortlog --summary --numbered
+[filter "media"]
+	clean = git media clean %f
+	smudge = git media smudge %f
+	required = true
+[apply]
+	# Detect whitespace errors when applying a patch
+	whitespace = fix
