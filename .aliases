@@ -21,3 +21,6 @@ alias ips="ifconfig -a | grep -o 'inet6\? \(addr:\)\?\s\?\(\(\([0-9]\+\.\)\{3\}[
 
 # Flush Directory Service cache
 alias flush="dscacheutil -flushcache && killall -HUP mDNSResponder"
+
+# deploy dotfiles to remote host
+deploy_dotfiles_to() { scp ~/.aliases ~/.bash_profile ~/.bashrc ~/.exports ~/.extra ~/.functions ~/.gitconfig ~/.inputrc ~/.tmux.conf ~/.vimrc ~/.git-prompt.sh "$1":~/ ; ssh "$1" 'git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle' ; }
