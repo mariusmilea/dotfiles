@@ -77,6 +77,7 @@ brew install tree
 brew install webkit2png
 brew install zopfli
 brew install ngrep
+brew install tmux
 
 # cleanup
 brew cleanup
@@ -96,3 +97,14 @@ sudo easy_install pip
 sudo pip install virtualenv
 sudo pip install virtualenvwrapper
 sudo pip install pylint
+
+# get vundle for vim
+git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
+
+# copy dotfiles
+cp .aliases .bash_profile .bashrc .exports .extra .functions .gitconfig .inputrc .tmux.conf .vimrc ~/
+if [[ $? == 0 ]]; then
+	echo "Successfully copied dotfiles."
+else
+	echo "Failed to copy the dotfiles."
+fi
