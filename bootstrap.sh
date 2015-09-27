@@ -78,6 +78,7 @@ brew install webkit2png
 brew install zopfli
 brew install ngrep
 brew install tmux
+brew install readline
 
 # cleanup
 brew cleanup

@@ -39,3 +39,6 @@ source ~/.git-prompt.sh;
 export GIT_PS1_SHOWUPSTREAM="auto";
 export GIT_PS1_SHOWCOLORHINTS="yes";
 export PS1="\[\033[01;35m\]\u@\h:\[\033[01;34m\]\$(parse_git_branch) \[\033[01;32m\]\w \[\033[01;34m\]\[\e[0m\]\$ ";
+
+# export pythonrc
+export PYTHONSTARTUP=~/.pythonrc
