@@ -98,6 +98,7 @@ sudo easy_install pip
 sudo pip install virtualenv
 sudo pip install virtualenvwrapper
 sudo pip install pylint
+sudo pip install git-review
 
 # get vundle for vim
 git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
