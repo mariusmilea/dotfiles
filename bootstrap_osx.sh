@@ -31,6 +31,9 @@ brew install gnu-sed --with-default-names
 brew install bash
 brew install bash-completion
 
+# Install zsh
+brew install zsh
+
 # wget with IRI support
 brew install wget --with-iri
 
@@ -79,19 +82,20 @@ brew install zopfli
 brew install ngrep
 brew install tmux
 brew install readline
+brew install z
 
 # cleanup
 brew cleanup
 
-# download git-completion
-if [[ ! -r /usr/local/etc/bash_completion.d/git-completion.bash ]]; then
-curl https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash -o /usr/local/etc/bash_completion.d/git-completion.bash
-fi
+# chsh zsh
+chsh -s /usr/local/bin/zsh
 
-# download the git-prompt
-if [[ ! -r ~/.git-prompt.sh ]]; then
-curl https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh -o ~/.git-prompt.sh
-fi
+# switch to zsh
+curl -L http://install.ohmyz.sh | sh
+
+# oh-my-zsh
+mkdir -p ~/.oh-my-zsh
+cd ~/.oh-my-zsh && git clone git://github.com/zsh-users/zsh-syntax-highlighting.git
 
 # install pip and virtualenv
 sudo easy_install pip
@@ -104,7 +108,7 @@ sudo pip install git-review
 git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
 
 # copy dotfiles
-cp .aliases .bash_profile .bashrc .exports .extra .functions .gitconfig .inputrc .tmux.conf .vimrc ~/
+cp .aliases .bash_profile .bashrc .zshrc .exports .extra .functions .gitconfig .inputrc .tmux.conf .vimrc ~/
 if [[ $? == 0 ]]; then
 	echo "Successfully copied dotfiles."
 else

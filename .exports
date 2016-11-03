@@ -3,9 +3,6 @@
 # Make vim the default editor
 export EDITOR='vim';
 
-# Point SHELL to the newest bash version
-export SHELL=/usr/local/bin/bash;
-
 # Increase Bash history size
 export HISTSIZE='32768';
 export HISTFILESIZE="${HISTSIZE}";
@@ -33,12 +30,3 @@ export CLICOLOR=1;
 
 # Set colors to match iTerm2 Terminal Colors
 export TERM=xterm-256color;
-
-# git related stuff
-source ~/.git-prompt.sh;
-export GIT_PS1_SHOWUPSTREAM="auto";
-export GIT_PS1_SHOWCOLORHINTS="yes";
-export PS1="\[\033[01;35m\]\u@\h:\[\033[01;34m\]\$(parse_git_branch) \[\033[01;32m\]\w \[\033[01;34m\]\[\e[0m\]\$ ";
-
-# export pythonrc
-export PYTHONSTARTUP=~/.pythonrc
