@@ -3,6 +3,9 @@
 # Make vim the default editor
 export EDITOR='vim';
 
+# Point SHELL to the newest bash version
+export SHELL=/bin/zsh;
+
 # Increase Bash history size
 export HISTSIZE='32768';
 export HISTFILESIZE="${HISTSIZE}";
@@ -30,3 +33,9 @@ export CLICOLOR=1;
 
 # Set colors to match iTerm2 Terminal Colors
 export TERM=xterm-256color;
+
+# gopath
+export GOPATH=~/go/src
+
+# update path
+export PATH=$PATH:/usr/local/go/bin
