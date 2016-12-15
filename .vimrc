@@ -17,6 +17,7 @@ Plugin 'tpope/vim-fugitive' " the ultimate git helper
 Plugin 'tpope/vim-commentary' " comment/uncomment lines with gcc or gc in visual mode
 Plugin 'rodjek/vim-puppet'
 Plugin 'godlygeek/tabular'
+Plugin 'fatih/vim-go'
 
 " colorschemes
 Plugin 'chriskempson/base16-vim'

@@ -95,7 +95,7 @@ curl -L http://install.ohmyz.sh | sh
 
 # oh-my-zsh
 mkdir -p ~/.oh-my-zsh
-cd ~/.oh-my-zsh && git clone git://github.com/zsh-users/zsh-syntax-highlighting.git
+cd ~/.oh-my-zsh && git clone https://github.com/zsh-users/zsh-syntax-highlighting.git
 
 # install pip and virtualenv
 sudo easy_install pip
@@ -104,11 +104,13 @@ sudo pip install virtualenvwrapper
 sudo pip install pylint
 sudo pip install git-review
 
+cd -
+
 # get vundle for vim
 git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
 
 # copy dotfiles
-cp .aliases .bash_profile .bashrc .zshrc .exports .extra .functions .gitconfig .inputrc .tmux.conf .vimrc ~/
+cp .aliases .bash_profile .bashrc .zshrc .exports .extra .functions .gitconfig .tmux.conf .vimrc ~/
 if [[ $? == 0 ]]; then
 	echo "Successfully copied dotfiles."
 else
