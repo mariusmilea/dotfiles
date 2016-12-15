@@ -94,7 +94,7 @@ chsh -s /usr/local/bin/zsh
 curl -L http://install.ohmyz.sh | sh
 
 # oh-my-zsh
-mkdir -p ~/.oh-my-zsh
+mkdir -p ~/.oh-my-zsh ~/go/src
 cd ~/.oh-my-zsh && git clone https://github.com/zsh-users/zsh-syntax-highlighting.git
 
 # install pip and virtualenv
