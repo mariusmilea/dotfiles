@@ -1,15 +1,20 @@
 # If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
-#
-. `brew --prefix`/etc/profile.d/z.sh
+#export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH=~/.oh-my-zsh
+export ZSH=/Users/marius/.oh-my-zsh
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="mh"
+ZSH_THEME="powerlevel10k/powerlevel10k"
+
+# Set list of themes to load
+# Setting this variable when ZSH_THEME=random
+# cause zsh load theme from this variable instead of
+# looking in ~/.oh-my-zsh/themes/
+# An empty array have no effect
+# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -53,7 +58,18 @@ ZSH_THEME="mh"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git brew)
+plugins=(
+  git
+  git-extras
+  colorize
+  github
+  pip
+  python
+  brew
+  kubectl
+  history
+  helm
+)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -75,7 +91,7 @@ source $ZSH/oh-my-zsh.sh
 # export ARCHFLAGS="-arch x86_64"
 
 # ssh
-# export SSH_KEY_PATH="~/.ssh/dsa_id"
+# export SSH_KEY_PATH="~/.ssh/rsa_id"
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
@@ -85,10 +101,41 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-source ~/.oh-my-zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh  
+export PATH=$PATH:$HOME/go/bin:$HOME/Library/Python/3.7/bin
+export GOPATH=$HOME/go
 
-# Load shell dotfiles:
-for file in ~/.{exports,aliases,functions,extra}; do
-    [ -r "$file" ] && [ -f "$file" ] && source "$file";
-done;
-unset file;
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+alias python=/usr/local/bin/python3
+alias pip=/usr/local/bin/pip3
+alias zoomcamfix=sudo killall VDCAssistant
+alias kubecurl="kubectl run curl --image=radial/busyboxplus:curl -i --tty"
+alias vim=/usr/local/bin/nvim
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/marius/work/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/marius/work/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/marius/work/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/marius/work/google-cloud-sdk/completion.zsh.inc'; fi
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
+
+export LC_ALL=en_US.UTF-8
+function helm-toggle() {
+    if [ -z "$1" ]; then
+        echo "helm client and Tiller (server side) versions always must match. Simply toggle between different Helm versions installed by brew".
+        echo
+        echo "Usage: helm-toggle <Helm version>"
+        echo
+        echo "installed helm versions are:"
+        brew info --json=v1  kubernetes-helm | jq .[].installed[].version
+        echo "current helm version is:"
+        brew info --json=v1  kubernetes-helm | jq .[].linked_keg
+    else
+        brew switch kubernetes-helm $1 > /dev/null # no appropriate error handling here if someone sets something silly
+    fi
+}
+export KUBE_EDITOR=nvim
+export EDITOR=nvim
+
