@@ -121,21 +121,23 @@ if [ -f '/Users/marius/work/google-cloud-sdk/completion.zsh.inc' ]; then . '/Use
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
 
+# exports
 export LC_ALL=en_US.UTF-8
-function helm-toggle() {
-    if [ -z "$1" ]; then
-        echo "helm client and Tiller (server side) versions always must match. Simply toggle between different Helm versions installed by brew".
-        echo
-        echo "Usage: helm-toggle <Helm version>"
-        echo
-        echo "installed helm versions are:"
-        brew info --json=v1  kubernetes-helm | jq .[].installed[].version
-        echo "current helm version is:"
-        brew info --json=v1  kubernetes-helm | jq .[].linked_keg
-    else
-        brew switch kubernetes-helm $1 > /dev/null # no appropriate error handling here if someone sets something silly
-    fi
-}
 export KUBE_EDITOR=nvim
 export EDITOR=nvim
 
+# aliases
+alias python=/usr/local/bin/python3
+alias pip=/usr/local/bin/pip3
+alias zoomcamfix=sudo killall VDCAssistant
+alias kubecurl="kubectl run curl --image=radial/busyboxplus:curl -i --tty"
+alias vim=/usr/local/bin/nvim
+
+# compress movies nice and quick
+function video-compress() {
+    if [ -z "$1" ] || [ -z "$2" ]; then
+        echo "No valid input/output"
+    else
+        ffmpeg -i $1 -copy_unknown -map_metadata 0 -map 0 -codec copy -codec:v libx264 -pix_fmt yuv420p -crf 23 -codec:a libfdk_aac -vbr 4 -preset fast $2
+    fi
+}
